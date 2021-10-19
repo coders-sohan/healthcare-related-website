@@ -1,16 +1,29 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+	const {
+		handleRegistration,
+		signInWithGoogle,
+		signInWithGithub,
+		handleNameChange,
+		handleEmailChange,
+		handlePasswordChange,
+		error,
+	} = useAuth();
 	return (
 		<>
 			<div className="my-5">
 				<div className="mx-auto w-25">
-					<form>
-						<h1 className="h3 mb-4 fw-normal">Please <span className="text-general">Create An Account</span></h1>
+					<form onSubmit={handleRegistration}>
+						<h1 className="h3 mb-4 fw-normal">
+							Please <span className="text-general">Create An Account</span>
+						</h1>
 
 						<div className="form-floating">
 							<input
+								onBlur={handleNameChange}
 								type="text"
 								className="form-control"
 								id="floatingInputName"
@@ -21,6 +34,7 @@ const Register = () => {
 						</div>
 						<div className="form-floating mt-4">
 							<input
+								onBlur={handleEmailChange}
 								type="email"
 								className="form-control"
 								id="floatingInputEmail"
@@ -31,6 +45,7 @@ const Register = () => {
 						</div>
 						<div className="form-floating mt-4">
 							<input
+								onBlur={handlePasswordChange}
 								type="password"
 								className="form-control"
 								id="floatingPassword"
@@ -40,6 +55,10 @@ const Register = () => {
 							<label htmlFor="floatingPassword">Password</label>
 						</div>
 
+						<div className="my-3">
+							<p className="text-danger">{error}</p>
+						</div>
+						
 						<div className="my-3">
 							<NavLink className="text-decoration-none" to="/login">
 								Already Registered?
@@ -51,11 +70,19 @@ const Register = () => {
 					</form>
 
 					<div className="text-center">
-						<button className="btn btn-primary mt-5 mx-2 bg-general align-items-center">
-							<span className="me-2">Google</span> <i className="fab fa-google"></i>
+						<button
+							onClick={signInWithGoogle}
+							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+						>
+							<span className="me-2">Google</span>{" "}
+							<i className="fab fa-google"></i>
 						</button>
-						<button className="btn btn-primary mt-5 mx-2 bg-general align-items-center">
-							<span className="me-2">Github</span> <i className="fab fa-github"></i>
+						<button
+							onClick={signInWithGithub}
+							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+						>
+							<span className="me-2">Github</span>{" "}
+							<i className="fab fa-github"></i>
 						</button>
 					</div>
 

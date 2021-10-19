@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-	const { signInWithGoogle } = useAuth();
+	const { signInWithGoogle, signInWithGithub, handleSignIn, error } = useAuth();
 	return (
 		<>
 			<div className="my-5">
 				<div className="mx-auto w-25">
-					<form>
+					<form onSubmit={handleSignIn}>
 						<h1 className="h3 mb-4 fw-normal">
 							Please <span className="text-general">Sign In</span>
 						</h1>
@@ -34,6 +34,10 @@ const Login = () => {
 							<label htmlFor="floatingPassword">Password</label>
 						</div>
 
+						<div className="mt-3">
+							<p className="text-danger">{error}</p>
+						</div>
+
 						<div className="d-flex justify-content-between align-items-center">
 							<div className="checkbox my-3">
 								<label className="form-check-label">
@@ -45,10 +49,8 @@ const Login = () => {
 									Remember me
 								</label>
 							</div>
-							<div className="my-3">
-								<NavLink className="text-decoration-none" to="/register">
-									Create an account?
-								</NavLink>
+							<div>
+								<p className="m-0">Forgot password</p>
 							</div>
 						</div>
 
@@ -65,10 +67,22 @@ const Login = () => {
 							<span className="me-2">Google</span>{" "}
 							<i className="fab fa-google"></i>
 						</button>
-						<button className="btn btn-primary mt-5 mx-2 bg-general align-items-center">
+						<button
+							onClick={signInWithGithub}
+							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+						>
 							<span className="me-2">Github</span>{" "}
 							<i className="fab fa-github"></i>
 						</button>
+					</div>
+
+					<div className="text-center">
+						<p className="mt-4">OR</p>
+						<div className="my-3">
+							<NavLink className="text-decoration-none" to="/register">
+								Create an account?
+							</NavLink>
+						</div>
 					</div>
 
 					<p className="mt-5 mb-3 text-muted text-center">
