@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Register from "./components/Register/Register";
 import Services from "./components/Services/Services";
 import AuthProvider from "./context/AuthProvider";
@@ -19,9 +20,9 @@ function App() {
 					<Route path="/home">
 						<Home />
 					</Route>
-					<Route path="/services">
+					<PrivateRoute path="/services">
 						<Services />
-					</Route>
+					</PrivateRoute>
 					<Route path="/login">
 						<Login />
 					</Route>
