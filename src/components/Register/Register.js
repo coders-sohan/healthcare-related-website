@@ -13,21 +13,21 @@ const Register = () => {
 							<input
 								type="text"
 								className="form-control"
-								id="floatingInput"
+								id="floatingInputName"
 								placeholder="name"
 								required
 							/>
-							<label htmlFor="floatingInput">Name</label>
+							<label htmlFor="floatingInputName">Name</label>
 						</div>
 						<div className="form-floating mt-4">
 							<input
 								type="email"
 								className="form-control"
-								id="floatingInput"
+								id="floatingInputEmail"
 								placeholder="name@example.com"
 								required
 							/>
-							<label htmlFor="floatingInput">Email address</label>
+							<label htmlFor="floatingInputEmail">Email address</label>
 						</div>
 						<div className="form-floating mt-4">
 							<input
@@ -52,10 +52,10 @@ const Register = () => {
 
 					<div className="text-center">
 						<button className="btn btn-primary mt-5 mx-2 bg-general align-items-center">
-							<span className="me-2">Google</span> <i class="fab fa-google"></i>
+							<span className="me-2">Google</span> <i className="fab fa-google"></i>
 						</button>
 						<button className="btn btn-primary mt-5 mx-2 bg-general align-items-center">
-							<span className="me-2">Github</span> <i class="fab fa-github"></i>
+							<span className="me-2">Github</span> <i className="fab fa-github"></i>
 						</button>
 					</div>
 

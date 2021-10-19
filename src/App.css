@@ -1,10 +1,10 @@
-.bg-general{
+.bg-general {
 	background-color: #11ab81;
 	color: #ffffff;
 	border-color: #11ab81;
 }
 
-.text-general{
+.text-general {
 	color: #11ab81;
 }
 
@@ -23,16 +23,16 @@
 	color: #ffffff;
 }
 
-.form-control:focus{
+.form-control:focus {
 	box-shadow: none;
 	border-color: #008561;
 }
 
-.form-check-input:focus{
+.form-check-input:focus {
 	box-shadow: none;
 }
 
-.form-check-input:checked{
+.form-check-input:checked {
 	background-color: #008561;
 	border-color: #008561;
 }

@@ -4,10 +4,12 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import Services from "./components/Services/Services";
+import AuthProvider from "./context/AuthProvider";
 
 function App() {
 	return (
-		<div className="App">
+		<AuthProvider>
 			<Router>
 				<Header />
 				<Switch>
@@ -17,6 +19,9 @@ function App() {
 					<Route path="/home">
 						<Home />
 					</Route>
+					<Route path="/services">
+						<Services />
+					</Route>
 					<Route path="/login">
 						<Login />
 					</Route>
@@ -25,7 +30,7 @@ function App() {
 					</Route>
 				</Switch>
 			</Router>
-		</div>
+		</AuthProvider>
 	);
 }
 
