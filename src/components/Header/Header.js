@@ -43,7 +43,7 @@ const Header = () => {
 										Register
 									</NavLink>
 								</li>
-								<button className="btn btn-logout">Log out</button>
+								<button className="btn btn-login-logout">Log out</button>
 							</ul>
 						</div>
 					</div>
