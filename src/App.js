@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import About from "./components/About/About";
@@ -13,6 +14,12 @@ import Services from "./components/Services/Services";
 import AuthProvider from "./context/AuthProvider";
 
 function App() {
+	const [services, setServices] = useState([]);
+	useEffect(() => {
+		fetch("https://coders-sohan.github.io/medilifedata-json/medilifedata.json")
+			.then((res) => res.json())
+			.then((data) => setServices(data));
+	}, []);
 	return (
 		<AuthProvider>
 			<Router>
@@ -31,7 +38,7 @@ function App() {
 						<Services />
 					</PrivateRoute>
 					<PrivateRoute path="/services/:serviceId">
-						<ServiceDetails />
+						<ServiceDetails services={services} />
 					</PrivateRoute>
 					<Route path="/contact">
 						<Contact />
