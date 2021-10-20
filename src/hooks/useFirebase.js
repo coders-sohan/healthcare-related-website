@@ -22,6 +22,7 @@ const useFirebase = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(true);
 	const auth = getAuth();
 	const googleProvider = new GoogleAuthProvider();
 	const githubProvider = new GithubAuthProvider();
@@ -29,16 +30,17 @@ const useFirebase = () => {
 		return signInWithPopup(auth, googleProvider);
 	};
 	const signInWithGithub = () => {
-		return signInWithPopup(auth, githubProvider)
-			// .then((result) => {
-			// 	// console.log(result.user);
-			// 	setUser(result.user);
-			// })
-			// .catch((error) => {
-			// 	const errorMessage = error.message;
-			// 	// console.log(errorMessage);
-			// 	setError(errorMessage);
-			// });
+		setIsLoading(true);
+		return signInWithPopup(auth, githubProvider);
+		// .then((result) => {
+		// 	// console.log(result.user);
+		// 	setUser(result.user);
+		// })
+		// .catch((error) => {
+		// 	const errorMessage = error.message;
+		// 	// console.log(errorMessage);
+		// 	setError(errorMessage);
+		// });
 	};
 
 	const handleRegistration = (e) => {
@@ -73,15 +75,15 @@ const useFirebase = () => {
 
 	const handleSignIn = (e) => {
 		// e.preventDefault();
-		return signInWithEmailAndPassword(auth, email, password)
-			// .then((result) => {
-			// 	const user = result.user;
-			// 	setError("");
-			// 	console.log(user);
-			// })
-			// .catch((error) => {
-			// 	setError(error.message);
-			// });
+		return signInWithEmailAndPassword(auth, email, password);
+		// .then((result) => {
+		// 	const user = result.user;
+		// 	setError("");
+		// 	console.log(user);
+		// })
+		// .catch((error) => {
+		// 	setError(error.message);
+		// });
 	};
 
 	const handleNameChange = (e) => {
@@ -97,8 +99,7 @@ const useFirebase = () => {
 
 	const handleForgotPassword = () => {
 		sendPasswordResetEmail(auth, email)
-			.then(() => {
-			})
+			.then(() => {})
 			.catch((error) => {
 				setError(error.message);
 			});
@@ -109,9 +110,7 @@ const useFirebase = () => {
 			.then(() => {
 				setUser({});
 			})
-			.catch((error) => {
-				setError(error.message);
-			});
+			.finally(() => setIsLoading(false));
 	};
 
 	useEffect(() => {
@@ -119,7 +118,10 @@ const useFirebase = () => {
 			if (user) {
 				// console.log("user already sign in", user);
 				setUser(user);
+			} else {
+				setUser();
 			}
+			setIsLoading(false);
 		});
 	}, []);
 	return {
@@ -136,6 +138,7 @@ const useFirebase = () => {
 		handleNameChange,
 		handleForgotPassword,
 		handleSignIn,
+		isLoading,
 	};
 };
 
