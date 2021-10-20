@@ -106,7 +106,7 @@ const Footer = () => {
 									<h5>Subscribe to our newsletter</h5>
 									<p>Monthly digest of whats new and exciting from us.</p>
 									<div className="d-flex w-100 gap-2">
-										<label for="newsletter1" className="visually-hidden">
+										<label htmlFor="newsletter1" className="visually-hidden">
 											Email address
 										</label>
 										<input
@@ -130,17 +130,17 @@ const Footer = () => {
 							<ul className="list-unstyled d-flex m-0">
 								<li className="ms-3">
 									<Link className="link-dark" to="#">
-										<i class="fab fa-facebook fs-4"></i>
+										<i className="fab fa-facebook fs-4"></i>
 									</Link>
 								</li>
 								<li className="ms-3">
 									<Link className="link-dark" to="#">
-										<i class="fab fa-twitter fs-4"></i>
+										<i className="fab fa-twitter fs-4"></i>
 									</Link>
 								</li>
 								<li className="ms-3">
 									<Link className="link-dark" to="#">
-										<i class="fab fa-github fs-4"></i>
+										<i className="fab fa-github fs-4"></i>
 									</Link>
 								</li>
 							</ul>
