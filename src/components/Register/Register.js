@@ -17,8 +17,8 @@ const Register = () => {
 			<div className="my-5">
 				<div className="mx-auto w-25">
 					<form onSubmit={handleRegistration}>
-						<h1 className="h3 mb-4 fw-normal">
-							Please <span className="text-general">Create An Account</span>
+						<h1 className="mb-5 fw-normal display-6 text-center">
+							Please <span className="text-general">Sign Up</span>
 						</h1>
 
 						<div className="form-floating">
