@@ -17,7 +17,7 @@ const ServiceSection = () => {
 					</h1>
 				</div>
 				<div className="mt-4">
-					<div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4">
+					<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 						{services.map((service) => (
 							<ServiceItem key={service.id} service={service}></ServiceItem>
 						))}
