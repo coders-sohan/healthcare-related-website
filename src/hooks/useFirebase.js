@@ -29,16 +29,16 @@ const useFirebase = () => {
 		return signInWithPopup(auth, googleProvider);
 	};
 	const signInWithGithub = () => {
-		signInWithPopup(auth, githubProvider)
-			.then((result) => {
-				// console.log(result.user);
-				setUser(result.user);
-			})
-			.catch((error) => {
-				const errorMessage = error.message;
-				// console.log(errorMessage);
-				setError(errorMessage);
-			});
+		return signInWithPopup(auth, githubProvider)
+			// .then((result) => {
+			// 	// console.log(result.user);
+			// 	setUser(result.user);
+			// })
+			// .catch((error) => {
+			// 	const errorMessage = error.message;
+			// 	// console.log(errorMessage);
+			// 	setError(errorMessage);
+			// });
 	};
 
 	const handleRegistration = (e) => {
@@ -72,16 +72,16 @@ const useFirebase = () => {
 	};
 
 	const handleSignIn = (e) => {
-		e.preventDefault();
-		signInWithEmailAndPassword(auth, email, password)
-			.then((result) => {
-				const user = result.user;
-				setError("");
-				console.log(user);
-			})
-			.catch((error) => {
-				setError(error.message);
-			});
+		// e.preventDefault();
+		return signInWithEmailAndPassword(auth, email, password)
+			// .then((result) => {
+			// 	const user = result.user;
+			// 	setError("");
+			// 	console.log(user);
+			// })
+			// .catch((error) => {
+			// 	setError(error.message);
+			// });
 	};
 
 	const handleNameChange = (e) => {

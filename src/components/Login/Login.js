@@ -15,8 +15,34 @@ const Login = () => {
 	const history = useHistory();
 	const location = useLocation();
 	const redirectUrl = location.state?.from || "/home";
-	const handleRedirectSignIn = () => {
+	const handleRedirectSignIn = (e) => {
+		e.preventDefault();
+		handleSignIn()
+			.then((result) => {
+				const user = result.user;
+				setError("");
+				console.log(user);
+				history.push(redirectUrl);
+			})
+			.catch((error) => {
+				setError(error.message);
+			});
+	};
+	const handleRedirectGoogleSignIn = () => {
 		signInWithGoogle()
+			.then((result) => {
+				// console.log(result.user);
+				setUser(result.user);
+				history.push(redirectUrl);
+			})
+			.catch((error) => {
+				const errorMessage = error.message;
+				// console.log(errorMessage);
+				setError(errorMessage);
+			});
+	};
+	const handleRedirectGithubSignIn = () => {
+		signInWithGithub()
 			.then((result) => {
 				// console.log(result.user);
 				setUser(result.user);
@@ -32,7 +58,7 @@ const Login = () => {
 		<>
 			<div className="my-5">
 				<div className="mx-auto w-25">
-					<form onSubmit={handleSignIn}>
+					<form onSubmit={handleRedirectSignIn}>
 						<h1 className="h3 mb-5 fw-normal display-6 text-center">
 							Please <span className="text-general">Sign In</span>
 						</h1>
@@ -91,13 +117,13 @@ const Login = () => {
 
 					<div className="text-center">
 						<button
-							onClick={handleRedirectSignIn}
+							onClick={handleRedirectGoogleSignIn}
 							className="btn btn-primary mt-5 mx-2 bg-general"
 						>
 							<i className="fab fa-google"></i>
 						</button>
 						<button
-							onClick={signInWithGithub}
+							onClick={handleRedirectGithubSignIn}
 							className="btn btn-primary mt-5 mx-2 bg-general"
 						>
 							<i className="fab fa-github"></i>
