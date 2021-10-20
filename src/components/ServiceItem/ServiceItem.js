@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ServiceItem = (props) => {
-	const { name, img2, description } = props.service;
+	const { id, name, img2, description } = props.service;
 	return (
 		<div>
 			<div className="col">
@@ -12,7 +13,9 @@ const ServiceItem = (props) => {
 						<p className="card-text">{description}</p>
 					</div>
 					<div className="card-footer text-center">
-						<button className="btn btn-general">Learn More</button>
+						<Link to={`/healthcare/${id}`}>
+							<button className="btn btn-general">Learn More</button>
+						</Link>
 					</div>
 				</div>
 			</div>

@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Register from "./components/Register/Register";
+import ServiceDetails from "./components/ServiceDetails/ServiceDetails";
 import Services from "./components/Services/Services";
 import AuthProvider from "./context/AuthProvider";
 
@@ -28,6 +29,9 @@ function App() {
 					</Route>
 					<PrivateRoute path="/services">
 						<Services />
+					</PrivateRoute>
+					<PrivateRoute path="/services/:serviceId">
+						<ServiceDetails />
 					</PrivateRoute>
 					<Route path="/contact">
 						<Contact />
