@@ -9,6 +9,7 @@ import {
 	createUserWithEmailAndPassword,
 	updateProfile,
 	signInWithEmailAndPassword,
+	sendPasswordResetEmail,
 	signOut,
 } from "firebase/auth";
 import { useEffect } from "react";
@@ -25,16 +26,7 @@ const useFirebase = () => {
 	const googleProvider = new GoogleAuthProvider();
 	const githubProvider = new GithubAuthProvider();
 	const signInWithGoogle = () => {
-		signInWithPopup(auth, googleProvider)
-			.then((result) => {
-				// console.log(result.user);
-				setUser(result.user);
-			})
-			.catch((error) => {
-				const errorMessage = error.message;
-				// console.log(errorMessage);
-				setError(errorMessage);
-			});
+		return signInWithPopup(auth, googleProvider);
 	};
 	const signInWithGithub = () => {
 		signInWithPopup(auth, githubProvider)
@@ -51,7 +43,7 @@ const useFirebase = () => {
 
 	const handleRegistration = (e) => {
 		e.preventDefault();
-		// console.log(name, email, password);
+		console.log(name, email, password);
 
 		if (password.length < 6) {
 			setError("Password must be 6 character long");
@@ -64,6 +56,13 @@ const useFirebase = () => {
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((result) => {
 				const user = result.user;
+				updateProfile(auth.currentUser, {
+					displayName: name,
+				})
+					.then(() => {})
+					.catch((error) => {
+						setError(error.message);
+					});
 				setError("");
 				console.log(user);
 			})
@@ -85,16 +84,6 @@ const useFirebase = () => {
 			});
 	};
 
-	// const updateName = () => {
-	// 	updateProfile(auth.currentUser, {
-	// 		displayName: name,
-	// 	})
-	// 		.then(() => {})
-	// 		.catch((error) => {
-	// 			setError(error.message);
-	// 		});
-	// };
-
 	const handleNameChange = (e) => {
 		setName(e.target.value);
 	};
@@ -104,6 +93,15 @@ const useFirebase = () => {
 
 	const handlePasswordChange = (e) => {
 		setPassword(e.target.value);
+	};
+
+	const handleForgotPassword = () => {
+		sendPasswordResetEmail(auth, email)
+			.then(() => {
+			})
+			.catch((error) => {
+				setError(error.message);
+			});
 	};
 
 	const logOut = () => {
@@ -127,6 +125,8 @@ const useFirebase = () => {
 	return {
 		user,
 		error,
+		setUser,
+		setError,
 		logOut,
 		signInWithGoogle,
 		signInWithGithub,
@@ -134,6 +134,7 @@ const useFirebase = () => {
 		handleEmailChange,
 		handlePasswordChange,
 		handleNameChange,
+		handleForgotPassword,
 		handleSignIn,
 	};
 };

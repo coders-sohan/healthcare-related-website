@@ -58,12 +58,7 @@ const Register = () => {
 						<div className="my-3">
 							<p className="text-danger">{error}</p>
 						</div>
-						
-						<div className="my-3">
-							<NavLink className="text-decoration-none" to="/login">
-								Already Registered?
-							</NavLink>
-						</div>
+
 						<button className="w-100 btn btn-lg btn-login-logout" type="submit">
 							Register
 						</button>
@@ -72,18 +67,25 @@ const Register = () => {
 					<div className="text-center">
 						<button
 							onClick={signInWithGoogle}
-							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+							className="btn btn-primary mt-5 mx-2 bg-general"
 						>
-							<span className="me-2">Google</span>{" "}
 							<i className="fab fa-google"></i>
 						</button>
 						<button
 							onClick={signInWithGithub}
-							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+							className="btn btn-primary mt-5 mx-2 bg-general"
 						>
-							<span className="me-2">Github</span>{" "}
 							<i className="fab fa-github"></i>
 						</button>
+					</div>
+
+					<div className="text-center">
+						<p className="mt-4">------ OR ------</p>
+						<div className="my-3">
+							<NavLink className="text-decoration-none" to="/login">
+								Already Registered?
+							</NavLink>
+						</div>
 					</div>
 
 					<p className="mt-5 mb-3 text-muted text-center">

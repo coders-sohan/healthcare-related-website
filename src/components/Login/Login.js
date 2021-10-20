@@ -1,15 +1,39 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-	const { signInWithGoogle, signInWithGithub, handleSignIn, error } = useAuth();
+	const {
+		signInWithGoogle,
+		signInWithGithub,
+		handleSignIn,
+		handleForgotPassword,
+		error,
+		setUser,
+		setError,
+	} = useAuth();
+	const history = useHistory();
+	const location = useLocation();
+	const redirectUrl = location.state?.from || "/home";
+	const handleRedirectSignIn = () => {
+		signInWithGoogle()
+			.then((result) => {
+				// console.log(result.user);
+				setUser(result.user);
+				history.push(redirectUrl);
+			})
+			.catch((error) => {
+				const errorMessage = error.message;
+				// console.log(errorMessage);
+				setError(errorMessage);
+			});
+	};
 	return (
 		<>
 			<div className="my-5">
 				<div className="mx-auto w-25">
 					<form onSubmit={handleSignIn}>
-						<h1 className="h3 mb-4 fw-normal">
+						<h1 className="h3 mb-5 fw-normal display-6 text-center">
 							Please <span className="text-general">Sign In</span>
 						</h1>
 
@@ -35,7 +59,7 @@ const Login = () => {
 						</div>
 
 						<div className="mt-3">
-							<p className="text-danger">{error}</p>
+							<p className="text-danger m-0">{error}</p>
 						</div>
 
 						<div className="d-flex justify-content-between align-items-center">
@@ -50,7 +74,13 @@ const Login = () => {
 								</label>
 							</div>
 							<div>
-								<p className="m-0">Forgot password</p>
+								<Link
+									onClick={handleForgotPassword}
+									to="/login"
+									className="m-0 text-decoration-none"
+								>
+									Forgot password
+								</Link>
 							</div>
 						</div>
 
@@ -61,23 +91,21 @@ const Login = () => {
 
 					<div className="text-center">
 						<button
-							onClick={signInWithGoogle}
-							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+							onClick={handleRedirectSignIn}
+							className="btn btn-primary mt-5 mx-2 bg-general"
 						>
-							<span className="me-2">Google</span>{" "}
 							<i className="fab fa-google"></i>
 						</button>
 						<button
 							onClick={signInWithGithub}
-							className="btn btn-primary mt-5 mx-2 bg-general align-items-center"
+							className="btn btn-primary mt-5 mx-2 bg-general"
 						>
-							<span className="me-2">Github</span>{" "}
 							<i className="fab fa-github"></i>
 						</button>
 					</div>
 
 					<div className="text-center">
-						<p className="mt-4">OR</p>
+						<p className="mt-4">------ OR ------</p>
 						<div className="my-3">
 							<NavLink className="text-decoration-none" to="/register">
 								Create an account?

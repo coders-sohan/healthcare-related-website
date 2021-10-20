@@ -44,16 +44,21 @@ const Header = () => {
 										Services
 									</NavLink>
 								</li>
-								<li className="nav-item me-3">
-									<NavLink className="navbar-item nav-link" to="/login">
-										Login
-									</NavLink>
-								</li>
-								<li className="nav-item me-3">
-									<NavLink className="navbar-item nav-link" to="/register">
-										Register
-									</NavLink>
-								</li>
+
+								{!user?.email && (
+									<>
+										<li className="nav-item me-3">
+											<NavLink className="navbar-item nav-link" to="/login">
+												Login
+											</NavLink>
+										</li>
+										<li className="nav-item me-3">
+											<NavLink className="navbar-item nav-link" to="/register">
+												Register
+											</NavLink>
+										</li>
+									</>
+								)}
 
 								{user?.email && (
 									<>
