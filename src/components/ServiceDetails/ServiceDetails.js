@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 const ServiceDetails = (props) => {
 	const { serviceId } = useParams();
 	const { services } = props;
-	console.log(props);
+	console.log('props');
 
 	const singleService = [];
 

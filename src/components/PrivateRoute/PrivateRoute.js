@@ -6,16 +6,14 @@ const PrivateRoute = ({ children, ...rest }) => {
 	const { user, isLoading } = useAuth();
 
 	if (isLoading) {
-		return (
-		  <span>Loading...</span>
-		);
-	  }
+		return <span>Loading...</span>;
+	}
 
 	return (
 		<Route
 			{...rest}
 			render={({ location }) =>
-				user.email ? (
+				user?.email ? (
 					children
 				) : (
 					<Redirect
